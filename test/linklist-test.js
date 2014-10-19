@@ -3,7 +3,7 @@ var chai = require('chai');
 var expect = chai.expect
 var LinkedList = require(process.env.PWD + '/lib/datastructures/linkedlist.js');
 
-describe("Linkedlist", function() {
+describe("LinkedList", function() {
   var linkedList = null;
   beforeEach(function() {
     linkedList = new LinkedList();
@@ -31,6 +31,7 @@ describe("Linkedlist", function() {
     done();
   });
 
+  // test removing entries by data 
   it('should delete the first node', function(done) {
     linkedList.remove({'name': 'kirk'});
     expect(linkedList.start.data.name).to.not.equal('kirk');
@@ -69,6 +70,49 @@ describe("Linkedlist", function() {
     expect(linkedList.start.data.name).to.not.equal('kirk');
     expect(linkedList.start.data.name).to.equal('kate');
     expect(linkedList.size()).to.equal(1);
+    done();
+  });
+
+  // test removing entries by index
+  it('should delete the first node', function(done) {
+    linkedList.removeAt(0);
+    expect(linkedList.start.data.name).to.not.equal('kirk');
+    expect(linkedList.start.data.name).to.equal('kate');
+    expect(linkedList.start.next.data.name).to.equal('luke');
+    expect(linkedList.size()).to.equal(2);
+    done();
+  });
+
+  it('should delete the second node', function(done) {
+    linkedList.removeAt(1);
+    expect(linkedList.start.data.name).to.equal('kirk');
+    expect(linkedList.start.next.data.name).to.not.equal('kate');
+    expect(linkedList.start.next.data.name).to.equal('luke');
+    expect(linkedList.size()).to.equal(2);
+    done();
+  });
+
+  it('should delete the last node', function(done) {
+    linkedList.removeAt(2);
+    expect(linkedList.start.data.name).to.equal('kirk');
+    expect(linkedList.start.next.data.name).to.not.equal('luke');
+    expect(linkedList.start.next.data.name).to.equal('kate');
+    expect(linkedList.size()).to.equal(2);
+    done();
+  });
+
+  it('should delete the first and last node', function(done) {
+    linkedList.removeAt(2);
+    expect(linkedList.start.data.name).to.equal('kirk');
+    expect(linkedList.start.next.data.name).to.not.equal('luke');
+    expect(linkedList.start.next.data.name).to.equal('kate');
+    expect(linkedList.size()).to.equal(2);
+
+    linkedList.removeAt(0);
+    expect(linkedList.start.data.name).to.not.equal('kirk');
+    expect(linkedList.start.data.name).to.equal('kate');
+    expect(linkedList.size()).to.equal(1);
+
     done();
   });
 })
