@@ -55,4 +55,12 @@ describe("Data", function() {
   it('should not be equal numbers', function() {
     expect(compare.isEqual(num1, num3)).to.equal(false);
   });
+
+  it('object should not equal null', function() {
+    expect(compare.isEqual(null, {a: { a: 1 } })).to.equal(false);
+  });
+
+  it('null should equal null', function() {
+    expect(compare.isEqual(null, null)).to.equal(true);
+  })
 });
