@@ -51,7 +51,9 @@ describe("LinkedList", function() {
   });
 
   it('should delete the last node', function(done) {
-    linkedList.remove({'name': 'luke'});
+    var removed = linkedList.remove({'name': 'luke'});
+    expect(removed.data.name).to.equal('luke');
+    expect(linkedList.end.data.name).to.equal('kate');
     expect(linkedList.start.data.name).to.equal('kirk');
     expect(linkedList.start.next.data.name).to.not.equal('luke');
     expect(linkedList.start.next.data.name).to.equal('kate');
