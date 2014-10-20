@@ -115,4 +115,32 @@ describe("LinkedList", function() {
 
     done();
   });
+
+  it('should insert a new node after the first', function(done) {
+    var start = linkedList.start;
+    linkedList.insertAfter(start, {name: 'charles'});
+    expect(linkedList.size()).to.equal(4);
+
+    done();
+  });
+
+  // test insert first
+  it('should insert the node as the start element', function(done) {
+    linkedList.addFirst({name: 'first'});
+    expect(linkedList.start.data.name).to.equal('first');
+    expect(linkedList.start.next.data.name).to.equal('kirk');
+    expect(linkedList.start.next.next.data.name).to.equal('kate');
+    expect(linkedList.size()).to.equal(4);
+    done();
+  });
+
+    // test insert last
+  it('should insert the node as the start element', function(done) {
+    linkedList.addLast({name: 'last'});
+    expect(linkedList.start.next.next.next.data.name).to.equal('last');
+    expect(linkedList.start.next.next.data.name).to.equal('luke');
+    expect(linkedList.start.next.data.name).to.equal('kate');
+    expect(linkedList.size()).to.equal(4);
+    done();
+  });
 })
