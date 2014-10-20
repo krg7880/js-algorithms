@@ -170,11 +170,8 @@ describe("LinkedList", function() {
 
   // test clearing the list
   it('should be completely cleared: LinkedList.clear()', function(done) {
-    expect(linkedList.contains({name: 'kirk'})).to.equal(true);
-    expect(linkedList.contains({name: 'luke'})).to.equal(true);
-    expect(linkedList.contains({name: 'kate'})).to.equal(true);
-    expect(linkedList.contains({name: 'pete'})).to.equal(false);
-    expect(linkedList.size()).to.equal(3);
+    linkedList.clear();
+    expect(linkedList.size()).to.equal(0);
     done();
   });
 })
