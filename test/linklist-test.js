@@ -140,6 +140,7 @@ describe("LinkedList", function() {
     expect(linkedList.start.next.next.next.data.name).to.equal('last');
     expect(linkedList.start.next.next.data.name).to.equal('luke');
     expect(linkedList.start.next.data.name).to.equal('kate');
+    expect(linkedList.last.data.name).to.equal('last');
     expect(linkedList.size()).to.equal(4);
     done();
   });
