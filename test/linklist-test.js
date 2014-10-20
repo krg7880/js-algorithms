@@ -84,7 +84,7 @@ describe("LinkedList", function() {
   });
 
   it('should delete the second node', function(done) {
-    linkedList.removeAt(1);
+    var removed = linkedList.removeAt(1);
     expect(linkedList.start.data.name).to.equal('kirk');
     expect(linkedList.start.next.data.name).to.not.equal('kate');
     expect(linkedList.start.next.data.name).to.equal('luke');
@@ -134,14 +134,35 @@ describe("LinkedList", function() {
     done();
   });
 
-    // test insert last
-  it('should insert the node as the start element', function(done) {
+  // test insert last
+  it('should insert the node as the tail element', function(done) {
     linkedList.addLast({name: 'last'});
     expect(linkedList.start.next.next.next.data.name).to.equal('last');
     expect(linkedList.start.next.next.data.name).to.equal('luke');
     expect(linkedList.start.next.data.name).to.equal('kate');
     expect(linkedList.last.data.name).to.equal('last');
     expect(linkedList.size()).to.equal(4);
+    done();
+  });
+
+  // test insert at position n
+  it('should insert the node at position (n)', function(done) {
+    linkedList.insertAt(1, {name: 'nth'});
+    expect(linkedList.start.data.name).to.equal('kirk');
+    expect(linkedList.start.next.data.name).to.equal('nth');
+    expect(linkedList.start.next.next.data.name).to.equal('kate');
+    expect(linkedList.start.next.next.next.data.name).to.equal('luke');
+    expect(linkedList.size()).to.equal(4);
+    done();
+  });
+
+  // test if data exists in list
+  it('should contain the specified element', function(done) {
+    expect(linkedList.contains({name: 'kirk'})).to.equal(true);
+    expect(linkedList.contains({name: 'luke'})).to.equal(true);
+    expect(linkedList.contains({name: 'kate'})).to.equal(true);
+    expect(linkedList.contains({name: 'pete'})).to.equal(false);
+    expect(linkedList.size()).to.equal(3);
     done();
   });
 })
